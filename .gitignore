@@ -1,1 +1,3 @@
 opensky-api/
+.venv/
+.env
