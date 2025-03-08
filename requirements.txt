@@ -1,8 +1,7 @@
-certifi==2024.8.30
-charset-normalizer==3.4.0
+certifi==2025.1.31
+charset-normalizer==3.4.1
 idna==3.10
--e git+https://github.com/openskynetwork/opensky-api.git@c6f34a5a9e6dc37ce58852ffa9110f79c2980a80#egg=opensky_api&subdirectory=python
-pygame-ce==2.5.2
+opensky-api @ git+https://github.com/openskynetwork/opensky-api.git@c6f34a5a9e6dc37ce58852ffa9110f79c2980a80#subdirectory=python
 python-dotenv==1.0.1
 requests==2.32.3
-urllib3==2.2.3
+urllib3==2.3.0

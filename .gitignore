@@ -1,3 +1,5 @@
 opensky-api/
 .venv/
+.vscode/
 .env
+test.*
