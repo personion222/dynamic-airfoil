@@ -34,8 +34,6 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-db = TinyDB(args.db_path)
-
 # info_table = """
 #     CREATE TABLE aircraft_info(
 #         icao CHAR(6) PRIMARY KEY,
@@ -53,10 +51,11 @@ query_time = time()
 state_info = [
     {
         "icao": state.icao24,
-        "callsign": state.callsign,
-        "country": state.origin_country,
         "lat": state.latitude,
         "lon": state.longitude,
+        "groundspeed": state.velocity,
+        "callsign": state.callsign,
+        "country": state.origin_country,
         "type": state.category,
         "time": query_time
     }
