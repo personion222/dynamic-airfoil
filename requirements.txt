@@ -109,6 +109,7 @@ SQLAlchemy==2.0.38
 starlette==0.46.1
 sympy==1.13.3
 texttable==1.7.0
+tinydb==4.8.2
 tqdm==4.67.1
 traffic==2.12
 trino==0.333.0
