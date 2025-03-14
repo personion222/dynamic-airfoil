@@ -1,5 +1,4 @@
 # gets all the aircraft in the sky and saves them to a tinydb database
-
 import argparse
 
 parser = argparse.ArgumentParser()

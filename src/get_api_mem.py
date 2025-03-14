@@ -1,5 +1,4 @@
 # gets all the aircraft in the sky and saves them to a dictionary, then to a json at the end
-
 import argparse
 
 parser = argparse.ArgumentParser()
