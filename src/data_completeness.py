@@ -19,7 +19,6 @@ parser.add_argument(
 args = parser.parse_args()
 
 from traffic.data import aircraft
-from time import perf_counter_ns
 from itertools import repeat
 import pandas as pd
 
@@ -38,13 +37,11 @@ with open(args.dataset, mode='r') as f:
 
     for row in df.to_dict(orient="records"):
         row_count += 1
-        row_completeness = {variable: (1 if row[variable] else 0) for variable in variables}
+        row_completeness = {variable: (0 if row[variable] == '' else 1) for variable in variables}
         general_completeness = {variable: general_completeness[variable] + row_completeness[variable] for variable in variables}
 
-        cache_start = perf_counter_ns()
         aircraft_type = icao_types.get(row["icao24"])
         if aircraft_type is None:
-            new_start = perf_counter_ns()
             tail_obj = aircraft.get(row["icao24"])
             if tail_obj is None:
                 # print(f"invalid aircraft: {row["callsign"]} ({row["icao24"]})")

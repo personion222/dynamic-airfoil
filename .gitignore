@@ -1,5 +1,6 @@
 opensky-api/
 opensky_data/
+filtered_data/
 .venv/
 .vscode/
 .env
