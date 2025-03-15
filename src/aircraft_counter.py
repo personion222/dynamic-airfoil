@@ -1,9 +1,18 @@
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "type",
+    help="aircraft type to find (e.g. C172)",
+    type=str
+)
+args = parser.parse_args()
+
 from opensky_api import OpenSkyApi
 from traffic.data import aircraft
 from dotenv import load_dotenv
 from os import getenv
 from time import time
-import argparse
 
 # aircraft.download_opensky()
 
@@ -18,14 +27,6 @@ def get_env_var(var_name):
 load_dotenv()
 username = get_env_var("OPENSKY_USERNAME")
 password = get_env_var("OPENSKY_PASSWORD")
-
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "type",
-    help="aircraft type to find (e.g. C172)",
-    type=str
-)
-args = parser.parse_args()
 
 print("requesting opensky states")
 # api = OpenSkyApi(username=username, password=password)
