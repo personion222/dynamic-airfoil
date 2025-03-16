@@ -67,7 +67,7 @@ processed_files = 0
 for fp in os.listdir(args.data_dir):
     file_start = time.perf_counter()
     
-    df = pd.read_csv(fp, dtype={"icao24": "string"}, low_memory=False, engine="c")
+    df = pd.read_csv(fp, dtype={"icao24": "string"}, low_memory=False, engine="c", sep=',')
     
     filtered = df[df["icao24"].isin(valid_icao)]
     filtered.to_csv(args.out_dir / fp.name, index=False)
