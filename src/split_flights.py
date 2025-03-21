@@ -3,7 +3,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "data_dir",
-    help="the directory of the csv datasets to look through",
+    help="the directory of the csv datasets to check",
     type=str
 )
 parser.add_argument(
@@ -14,33 +14,41 @@ parser.add_argument(
 args = parser.parse_args()
 
 import pandas as pd
+import numpy as np
 import time
 import os
 
-REQUIRED_COLUMNS = ["lat", "lon", "velocity", "heading", "vertrate", "onground", "baroaltitude", "geoaltitude"]
+# first, split aircraft flight data into chunks if the timestep is longer than
+# MIN_SPLIT_TIMESTEP, and groundspeed is lower than MAX_SPLIT_GROUNDSPEED
+MIN_SPLIT_TIMESTEP = 60 * 15 # sec
+MAX_SPLIT_GROUNDSPEED = 25 # m/sec
 
-datasets = sorted(os.listdir(args.data_dir))
+# after, remove contiguous chunks if the timestep is longer than
+# MIN_REMOVAL_TIMESTEP
+MIN_REMOVAL_TIMESTEP = 60 # sec
+MIN_LENGTH = 60 * 60 # sec
 
-dfs = []
 full_start = time.perf_counter()
-for dataset in datasets:
-    df_start = time.perf_counter_ns()
-    dfs.append(pd.read_csv(args.data_dir + dataset, sep=','))
-    print(f"read file {dataset} in {round((time.perf_counter_ns() - df_start) / 1_000_000)} ms")
-read_end = time.perf_counter()
+for aircraft in os.listdir(args.data_dir):
+    aircraft_start = time.perf_counter()
 
-filter_write_start = time.perf_counter()
-full_df = pd.concat(dfs, ignore_index=True)
+    df = pd.read_csv(args.data_dir + aircraft, sep=',')
+    df.drop_duplicates(subset="lastposupdate")
 
-full_df.dropna(subset=REQUIRED_COLUMNS, inplace=True)
+    df["time_diff"] = df["lastposupdate"].diff()
+    overlap_mask = (df["time_diff"] > MIN_SPLIT_TIMESTEP) & (df["velocity"] < MAX_SPLIT_GROUNDSPEED)
 
-filter_write_file_start = time.perf_counter_ns()
-for icao, group in full_df.groupby("icao24"):
-    unique_rows = group.drop_duplicates("lastposupdate", keep=False)
-    if not unique_rows.empty:
-        unique_rows.to_csv(f"{args.out_dir}{icao}.csv", index=False)
-    print(f"filtered and wrote icao {icao} in {round((time.perf_counter_ns() - filter_write_file_start) / 1_000_000)} ms")
-    filter_write_file_start = time.perf_counter_ns()
+    split_indices = df[overlap_mask].index.tolist()
 
-print(f"finished reading files in {round(read_end - full_start)} sec, filtering in {round(time.perf_counter() - filter_write_start)} sec")
-print(f"finished processing in {round(time.perf_counter() - full_start)} sec")
+    chunks = [df.iloc[start: end] for start, end in zip([0] + split_indices, split_indices + [len(df)])]
+    filtered_chunks = [chunk for chunk in chunks
+                       if (chunk["time_diff"] < MIN_REMOVAL_TIMESTEP).any() and
+                       chunk.loc[chunk.index[-1], "lastposupdate"] -
+                       chunk.loc[chunk.index[0], "lastposupdate"] > MIN_LENGTH]
+
+    for idx, chunk in enumerate(filtered_chunks):
+        chunk.to_csv(f"{args.out_dir}{aircraft.split('.')[0]}_{idx}.csv")
+    
+    print(f"processed aircraft {aircraft.split('.')[0]} into {len(filtered_chunks)} chunk(s) ({len(chunks)} unfiltered) in {round((time.perf_counter() - aircraft_start) * 1000)} ms")
+
+print(f"finished processing all aircraft in {round(time.perf_counter() - full_start)} sec")

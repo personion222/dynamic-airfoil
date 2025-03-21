@@ -1,6 +1,6 @@
 opensky-api/
 *_data/
-.venv/
+*venv/
 .vscode/
 .env
 test*
