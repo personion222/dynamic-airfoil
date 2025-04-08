@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="106mm"
+   height="22.5mm"
+   viewBox="0 0 106 22.5"
+   version="1.1"
+   id="svg15"
+   sodipodi:docname="0012.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs15" />
+  <sodipodi:namedview
+     id="namedview15"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="3.6203867"
+     inkscape:cx="193.76383"
+     inkscape:cy="59.524028"
+     inkscape:window-width="2400"
+     inkscape:window-height="1261"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g13" />
+  <title
+     id="title1">Airfoil plot (user-001) NACA 0012 Airfoil M=0.0% P=0.0% T=12.0% by AirfoilTools.com</title>
+  <g
+     transform="translate(3,8.9988)"
+     id="g13">
+    <path
+       fill="none"
+       stroke="#ff0000"
+       stroke-width="0.1"
+       d="m 47.022392,-8.9988 -0.150001,-0.02 -0.470001,-0.07 -0.760001,-0.11 -1.070003,-0.1499999 -1.360003,-0.19 -1.640003,-0.2299999 -1.920005,-0.2500002 -2.180005,-0.29 -2.430005,-0.31 -2.660006,-0.32 -2.890006,-0.349999 -3.080007,-0.35 -3.270008,-0.36 -3.420007,-0.36 -3.570008,-0.36 -3.680008,-0.35 -3.7800089,-0.34 -3.8500086,-0.31 -3.90000875,-0.3 -3.92000875,-0.27 -3.9200088,-0.23 -3.9000092,-0.189999 -3.850008,-0.15 -3.780009,-0.1 -3.680008,-0.04 -3.570008,0.02 -3.420007,0.07 -3.270008,0.14 -3.080007,0.199999 -2.890006,0.26 -2.660006,0.32 -2.430006,0.39 -2.180005,0.43 -1.920004,0.48 -1.640004,0.53 -1.360003,0.57 -1.070002,0.6 -0.760002,0.639999 -0.470001,0.6600002 -0.15,0.6899998 0.15,0.6899998 0.470001,0.6599999 0.760002,0.6399998 1.070002,0.5999999 1.360003,0.5699998 1.640004,0.5299999 1.920004,0.4799999 2.180005,0.4299999 2.430006,0.3899999 2.660006,0.3199999 2.890006,0.2599998 3.080007,0.2 3.270008,0.1399999 3.420007,0.07 3.570008,0.02 3.680008,-0.04 3.780009,-0.1 3.850008,-0.15 3.9000092,-0.19 3.9200088,-0.2299998 3.92000875,-0.2699999 3.90000875,-0.3 3.8500086,-0.3099999 3.7800089,-0.3399999 3.680008,-0.3499999 3.570008,-0.3599999 3.420007,-0.3599999 3.270008,-0.3599999 3.080007,-0.35 2.890006,-0.3499999 2.660006,-0.3199999 2.430005,-0.3099999 2.180005,-0.29 1.920005,-0.2499999 1.640003,-0.2299999 1.360003,-0.19 1.070003,-0.1499999 0.760001,-0.11 0.470001,-0.07 0.150001,-0.02"
+       id="path10"
+       style="stroke:#000000;stroke-opacity:1"
+       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
+  </g>
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Airfoil plot (user-001) NACA 0012 Airfoil M=0.0% P=0.0% T=12.0% by AirfoilTools.com</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

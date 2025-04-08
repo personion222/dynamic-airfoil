@@ -4,3 +4,6 @@ opensky-api/
 .vscode/
 .env
 test*
+temp/
+models/
+logs/

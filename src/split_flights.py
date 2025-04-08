@@ -13,9 +13,8 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-from geopy.distance import distance
+from geopy.distance import geodesic
 import pandas as pd
-import numpy as np
 import time
 import os
 
@@ -23,9 +22,9 @@ import os
 def row_distance(row):
     if pd.isna(row["prevlat"]):
         return 0
-    
-    return distance((row["lat"], row["lon"]), 
-                    (row["prevlat"], row["prevlon"]), 
+
+    return geodesic((row["lat"], row["lon"]),
+                    (row["prevlat"], row["prevlon"]),
                     ellipsoid="WGS-84").meters
 
 
@@ -63,7 +62,7 @@ for aircraft in os.listdir(args.data_dir):
         chunk = chunk.assign(distance=lambda chunk: chunk.apply(row_distance, axis=1))
         chunk = chunk.assign(totaldist=lambda chunk: chunk["distance"].cumsum())
         chunk.to_csv(f"{args.out_dir}{aircraft.split('.')[0]}_{idx}.csv")
-    
+
     print(f"processed aircraft {aircraft.split('.')[0]} into {len(filtered_chunks)} chunk(s) ({len(chunks)} unfiltered) in {round((time.perf_counter() - aircraft_start) * 1000)} ms")
 
 print(f"finished processing all aircraft in {round(time.perf_counter() - full_start)} sec")
